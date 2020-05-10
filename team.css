@@ -8,14 +8,13 @@
 }
 
 .pen-info__title {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 40px;
+"Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";    font-size: 40px;
     letter-spacing: 1.8px;
     margin: 0;
 }
 
 .pen-info__p {
-    font-size: 17px;
+    font-size: 10px;
 }
 
 
@@ -93,14 +92,13 @@
 }
 
 .people__div--info {
-    position: absolute;
-    bottom: 0;
-    height: 40%;
+    position: relative;
+    bottom: 10;
+    height: 35%;
     padding: 20px;
     opacity: 0;
     visibility: hidden;
-    overflow-y: auto;
-
+    overflow: hidden;
     background-color: #fff;
     transition: all 0.4s;
 }
@@ -115,10 +113,7 @@
     letter-spacing: 1.1px;
 }
 
-.people__desc {
-    line-height: 1.5;
-    margin: 0 0 20px;
-}
+
 
 
 @media only screen and (max-width: 1200px) {
