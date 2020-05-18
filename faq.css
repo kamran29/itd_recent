@@ -3,14 +3,38 @@
 body {
   font-family: 'Open Sans';
   font-size: 1.5em;
+  background-color: #f8f9fa
+
 
 }
+.faq-title h2 {
+  position: relative;
+  margin-bottom: 5px;
+  display: inline-block;
+  font-weight: 60;
+  line-height: 1;
+  font-size: 3em;
 
+}
+.faq-title h2::before {
+    content: "";
+    position: absolute;
+    left: -12%;
+    width: 120px;
+    height: 1px;
+    background: #E91E63;
+    bottom: -25px;
+
+}
+.faq-title p {
+  padding: 0 190px;
+  margin-bottom: 10px;
+}
 .content {
   width: 80%;
   padding: 20px;
   margin: 0 auto;
-  padding: 0 60px 0 0;
+  padding: 0 0px 10 10;
 
 }
 
@@ -22,7 +46,7 @@ body {
 
 .question {
   position: relative;
-  background: #8FBC8F;
+  background: #efc468;
   margin: 0;
   padding: 10px 10px 10px 50px;
   display: block;

@@ -1,76 +1,58 @@
-$(function() {
+function submitToAPI(e) {
+       e.preventDefault();
+//       var URL = "API Gateway";
 
-  $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
-    preventSubmit: true,
-    submitError: function($form, event, errors) {
-      // additional error messages or events
-      
-    },
-    submitSuccess: function($form, event) {
-      event.preventDefault(); // prevent default submit behaviour
-      // get values from FORM
-      var name = $("input#name").val();
-      var email = $("input#email").val();
-      var phone = $("input#phone").val();
-      var message = $("textarea#message").val();
-      var firstName = name; // For Success/Failure Message
-      // Check for white space in name for Success/Fail message
-      if (firstName.indexOf(' ') >= 0) {
-        firstName = name.split(' ').slice(0, -1).join(' ');
-      }
-      $this = $("#sendMessageButton");
-      $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
-      $.ajax({
-        url: "contact_me.php",
-        type: "POST",
-        data: {
-          name: name,
-          phone: phone,
-          email: email,
-          message: message
-        },
-        cache: false,
-        success: function() {
-          // Success message
-          $('#success').html("<div class='alert alert-success'>");
-          $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $('#success > .alert-success')
-            .append("<strong>Your message has been sent. </strong>");
-          $('#success > .alert-success')
-            .append('</div>');
-          //clear all fields
-          $('#contactForm').trigger("reset");
-        },
-        error: function() {
-          // Fail message
-          $('#success').html("<div class='alert alert-danger'>");
-          $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
-          $('#success > .alert-danger').append('</div>');
-          //clear all fields
-          $('#contactForm').trigger("reset");
-        },
-        complete: function() {
-          setTimeout(function() {
-            $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
-          }, 1000);
+
+       var name = document.getElementById("name-input").value;
+       var phone = document.getElementById("phone-input").value;
+       var email = document.getElementById("email-input").value;
+       var desc = document.getElementById("description-input").value;
+     if (name=="" || phone=="" || email=="" || desc=="")
+        {
+            alert("Please Fill All Required Field");
+            return false;
         }
-      });
-    },
-    filter: function() {
-      return $(this).is(":visible");
-    },
-  });
+    
+    nameRE = /^[A-Z]{1}[a-z]{2,20}[ ]{1}[A-Z]{1}[a-z]{2,20}/;
+    if(!nameRE.test(name)) {
+      alert("Name entered, is not valid");
+        return false;
+    }
+    
+    phoneRE = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+    if(!phoneRE.test(phone)) {
+        alert("Phone number entered, is not valid");
+        return false;
+            }
+    
+    emailRE = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!emailRE.test(email)) {
+      alert("Email Address entered, is not valid");
+        return false;
+    }
+       var data = {
+          name : name,
+          phone : phone,
+          email : email,
+          desc : desc
+        };
 
-  $("a[data-toggle=\"tab\"]").click(function(e) {
-    e.preventDefault();
-    $(this).tab("show");
-  });
-});
-
-/*When clicking on Full hide fail/success boxes */
-$('#name').focus(function() {
-  $('#success').html('');
-});
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "https://8e5srjb160.execute-api.us-west-2.amazonaws.com/work/cs");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(data));
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === 4) {
+      var response = JSON.parse(xmlhttp.responseText);
+      if (xmlhttp.status === 200 ) {
+        console.log('successful');
+        document.getElementById("contact-form").innerHTML = "<h1>Thank you for your message/feedback<br>our team will get back to you soon!</h1>";
+        } else {
+          console.log('failed');
+      }
+    }
+  }
+  
+  document.getElementById('contact-form').reset();
+    
+  } 

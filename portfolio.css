@@ -1,0 +1,24 @@
+.overlay-text {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  color: white;
+}
+
+.overlay-box {
+  position: relative;
+}
+
+.slider-bg-image {
+  position: absolute;
+  background-blend-mode: multiply;
+  background-position: bottom center;
+  background-size: cover;
+}
+
+.slider-bg-image,
+.carousel-overlay {
+  height: 600px;
+}
