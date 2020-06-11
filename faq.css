@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,800);
 
 body {
-  font-family: 'Open Sans';
-  font-size: 1.5em;
+  font-family: "Montserrat";
+  font-size: 1.9em;
   background-color: #f8f9fa
 
 
@@ -55,7 +55,7 @@ body {
 }
 
 .answers {
-  background: #999;
+  background: #e6e1e1;
   padding: 0px 15px;
   margin: 5px 0;
   height: 0;

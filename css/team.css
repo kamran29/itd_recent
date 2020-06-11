@@ -1,3 +1,5 @@
+
+  
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
 
 *{
@@ -32,7 +34,7 @@
 }
 
 .team-wrap .team-member-listing .team-member-listing-item .team-member-info-wrap p {
-    font-weight: 100;
+    font-weight: 1000;
     color: #black;
     margin-bottom: 10px;
     padding-top: 10px;
@@ -98,4 +100,3 @@
     }
 }
 
-/* End Media query */
